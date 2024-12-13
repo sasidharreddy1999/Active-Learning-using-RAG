@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <title>Question Answering App with BERT</title> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <h1>Question Answering App with ActiveRAG</h1>
+    <!-- <form method="POST" action="/">
+       <label for="question">Enter your question</label>
+        <input type="text" name="question" id="question" placeholder="Enter your question..." value="{{ request.form.get('question', '') }}">
+        <input type="submit" value="Get Answer">
+    </form> -->
+    <form class="search" action="/" method="POST">
+        <input type="search" name="question" id="question" placeholder="Search here..."
+            value="{{ request.form.get('question', '') }}" required>
+        <button type="submit">Search</button>
+    </form>
+    <!-- <div class="answer">
+        <h2>anchoring_output:</h2>
+        <p>{{ anchoring_output }}</p>
+        <h2>anchoring_correctness:</h2>
+        <p>{{anchoring_correctness}}</p>
+    </div> -->
+    {% if cot %}
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="primary" scope="col">Method</th>
+                    <th scope="col">Output</th>
+                    <th scope="col">Verdict</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Chain-of-Thought</th>
+                    <td>{{cot}}</td>
+                    <td>{{cot_correctness}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ActiveRAG-Anchoring</th>
+                    <td>{{anchoring_output}}</td>
+                    <td>{{anchoring_correctness}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ActiveRAG-Associate</th>
+                    <td>{{associate_output}}</td>
+                    <td>{{associate_correctness}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ActiveRAG-Logician</th>
+                    <td>{{logician_output}}</td>
+                    <td>{{logician_correctness}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ActiveRAG-Cognition</th>
+                    <td>{{cognition_output}}</td>
+                    <td>{{cognition_correctness}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Golden Answer</th>
+                    <td colspan="4"><i>in the 7th century</i></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% endif %}
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+</body>
+
+</html>
