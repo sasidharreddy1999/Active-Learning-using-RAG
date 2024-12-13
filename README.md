@@ -1,8 +1,7 @@
 # Active-Learning-using-RAG
 
 # Install from git 
-git clone https://github.com/sasidharreddy1999/Active-Learning-using-RAG 
-cd ActiveRAG-main
+git clone https://github.com/sasidharreddy1999/Active-Learning-using-RAG                        cd ActiveRAG-main
 
 # Install the necessary packages 
 pip install -r requirements.txt
